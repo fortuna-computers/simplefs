@@ -14,11 +14,11 @@ bootstrap itself from it.
 
 | Byte  | Length | Description |
 |-------|--------|-------------|
-| `00` | 4      | Jump instruction |
-| `04` | 4      | Signature (`9f 45 a8 c3`) |
-| `08` | 2      | SimpleFS version |
-| `0A` | 2      | Link to boot file entry |
-| `0C` | Up to `1FF` | Boot code |
+| `00`  | 4      | Jump instruction |
+| `04`  | 4      | Signature (`9f 45 a8 c3`) |
+| `08`  | 2      | SimpleFS version |
+| `0A`  | 2      | Reserved |
+| `0C`  | Up to `1FF` | Boot code |
 
 ## File list (sectors 1 to 63)
 
@@ -28,9 +28,9 @@ Each file entry has 32 bytes, organized like this:
 |------|--------|-------------|
 | `00` | 1      | File status (0: end of list; 1: file, 2: deleted file) |
 | `01` | 1      | Reserved |
-| `02` | 2      | File size (up to 64k)
-| `04` | 4      | File date |
-| `08` | 24     | File name |
+| `02` | 4      | File size (up to 64k)
+| `06` | 4      | File date |
+| `0A` | 21     | File name |
 
 ## File contents (sectors 64 to 129.088)
 
