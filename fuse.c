@@ -34,6 +34,10 @@ static int sfs_getattr(const char *path, struct stat *stbuf, struct fuse_file_in
         stbuf->st_mode = S_IFDIR | 0755;
         stbuf->st_nlink = 2;
         return 0;
+    } else if (strcmp(path, "/@boot") == 0) {
+        stbuf->st_mode = S_IFLNK | 0644;
+        stbuf->st_nlink = 0;
+        return 0;
     }
 
     return -ENOENT;
